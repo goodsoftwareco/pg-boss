@@ -270,7 +270,7 @@ function expire(schema) {
 function purge(schema) {
   return `
     DELETE FROM ${schema}.archive
-    WHERE (archivedOn < now() - CAST($1 as interval))
+    WHERE (archivedOn + CAST($1 as interval) < now())
   `;
 }
 
